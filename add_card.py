@@ -6,14 +6,22 @@ import json
 import sys
 import webbrowser
 
-if len(sys.argv) < 5:
+arglen = len(sys.argv)
+
+if arglen < 5:
     raise Exception("Usage: list_trello_lists.py [token] [list_id] [position] [card_name]")
+
+name = sys.argv[4]
+
+if arglen > 5:
+    for i in range(5,arglen):
+        name = "%s %s" % (name, sys.argv[i])
 
 key = "3e2cd730f3dcccbe15eaf0d39d219a37"
 token = sys.argv[1]
 args = { 'key': key,
     'token': sys.argv[1],
-    'name': sys.argv[4],
+    'name': name,
     'pos': sys.argv[3],
     'idList': sys.argv[2]
     }
