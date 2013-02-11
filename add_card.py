@@ -33,4 +33,5 @@ try:
 except urllib2.HTTPError as inst:
     raise Exception("Key or Token incorrect")
 
+#jump back to Launch Center Pro
 webbrowser.open("launchpro:")
