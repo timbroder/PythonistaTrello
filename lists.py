@@ -13,9 +13,11 @@ args = { 'key': key,
     'token': sys.argv[1],
     'filter': 'open'}
 
+#build out api url
 username = sys.argv[2]
 boards_url = "https://api.trello.com/1/members/%s/boards/?%s" % (username, urllib.urlencode(args))
 
+#get board data from api
 try:
     data = urllib2.urlopen(boards_url)
 except urllib2.HTTPError as inst:
@@ -23,14 +25,15 @@ except urllib2.HTTPError as inst:
 
 boards = json.loads(data.read())
 
+#loop through each board
 for board in boards:
-
     board_id = board['id']
     lists_url = "https://api.trello.com/1/boards/%s/lists?%s" % (board_id, urllib.urlencode(args))
     data = urllib2.urlopen(lists_url)
     lists = json.loads(data.read())
 
     print "-- %s" % board['name']
+    #output each list in board
     for lizt in lists:
         print "\"%s\" %s" % (lizt['name'], lizt['id'])
     print "\n"
