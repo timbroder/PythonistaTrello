@@ -13,6 +13,7 @@ if arglen < 5:
 
 name = sys.argv[4]
 
+#take care of spaces
 if arglen > 5:
     for i in range(5,arglen):
         name = "%s %s" % (name, sys.argv[i])
